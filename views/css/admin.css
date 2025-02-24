@@ -1,0 +1,296 @@
+.ar-blocked{
+    position: relative;
+}
+.ar-loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.5);
+}
+.ar-loading .ar-loading-inner{
+    position: absolute;
+    width: 140px;
+    height: 49px;
+    padding: 15px 15px 15px 40px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #AAAAAA;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url('../img/ring-alt.gif') no-repeat 6px 8px scroll  #FFFFFF;
+}
+.arseo-overrides .arseo-success .icon-check{
+    display: inline-block;
+    color: #72c279;
+}
+.arseo-overrides .arseo-success .icon-close{
+    display: none;
+    color: #d27c82;
+}
+.arseo-overrides .arseo-fail .icon-close{
+    display: inline-block;
+    color: #d27c82;
+}
+.arseo-overrides .arseo-fail .icon-check{
+    display: none;
+    color: #72c279;
+}
+#arseopro-config .tab-content{
+    display: block;
+}
+#arseopro-config .tab-content .panel{
+    border-radius: 0 0 5px 5px;
+}
+
+#arseopro-config .font-15{
+    font-size: 15px;
+}
+
+#arseopro-config .tab-content .panel-heading, 
+#arseopro-config #form-redirect-list .panel-heading, 
+#arseopro-config #form-url-list .panel-heading,
+#arseopro-config #form-meta-list .panel-heading,
+#arseopro-config #form-url-duplication-list .panel h3{
+    display: none;
+}
+
+#arseopro-config #arseo-meta-rule-form .panel,
+#arseopro-config .form-group .form-group{
+    margin-bottom: 0;
+}
+
+#arseopro-config .form-group .form-group .col-sm-6{
+    padding: 0;
+}
+
+#arseopro-config .form-group .help-block{
+    margin-bottom: 0;
+}
+
+#arseopro-config .no-content-lbl{
+    color: #787878;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+#arseopro-config #form-redirect-list .panel, 
+#arseopro-config #form-url-list .panel,
+#arseopro-config #form-meta-list .panel,
+#arseopro-config #form-url-duplication-list .panel,
+#arseopro-config #form-sitemap-products .panel,
+#arseopro-config #form-sitemap-suppliers .panel,
+#arseopro-config #form-sitemap-manufacturers .panel,
+#arseopro-config #form-sitemap-cms .panel,
+#arseopro-config #form-sitemap-meta .panel{
+    border: 0 none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#arseopro-config .tab-content .panel-heading.show-heading{
+    display: block;
+}
+
+#arseopro-config .form-group .errors{
+    display: none;
+    color: #a94442;
+}
+
+#arseopro-config .form-group.has-error .errors{
+    display: block;
+}
+
+#arseopro-config .form-group.has-error .help-block{
+    color: #959595;
+}
+.arseo-placeholder{
+    padding: 60px;
+}
+#arseopro-config .pagination .disabled{
+    pointer-events: none;
+}
+#arseopro-config .panel-heading-action .prestashop-switch{
+    display: inline-block;
+    margin: 1px 5px 0 0;
+    width: 60px !important;    
+    float: left;
+    height: 25px;
+}
+
+#arseopro-config .panel-heading-action .prestashop-switch a.btn{
+    top: 0 !important;
+}
+#arseopro-config .panel-heading-action small{
+    float: left;
+    height: 25px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+}
+.ar-block{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.8);
+    display: none;
+}
+.ar-block.active{
+    display: block;
+}
+.ar-block .lbl{
+    width: 258px;
+    height: 110px;
+    line-height: 110px;
+    padding-top: 0;
+    text-align: center;
+    right: 50%;
+    top: -14px;
+    color: #9b0505;
+    font-size: 16px;
+    position: absolute;
+    padding-right: 0;
+    margin-right: -129px;
+    font-weight: bold;
+}
+#arseopro-config .form-wrapper{
+    position: relative;
+}
+#arseopro-config .progress-bar{
+    background-color: #5cb85c;
+    color: #FFFFFF;
+}
+#arseo-categories, 
+#arseo-meta-categories{
+    max-height: 200px;
+    overflow: auto;
+}
+#arseo-categories-container, 
+#arseo-meta-categories-container{
+    margin-top: 5px;
+}
+#arseo-categories-container .panel,
+#arseo-meta-categories-container .panel{
+    margin-bottom: 0 !important;
+}
+.bootstrap #arseopro-config .modal-body h3{
+    margin: 0;
+    font-size: 18px;
+    padding: 0;
+    border: 0 none;
+    text-decoration: none;
+    font-weight: normal;
+    text-transform: none;
+}
+
+#arseopro-config .form-group .form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#arseopro-config .favicon-preview{
+    background: url('../img/trbg.png') repeat 0 0 scroll transparent;
+    width: 64px;
+    height: 64px;
+}
+
+#arseopro-config .nav-tabs .has-error a{
+    color: #a94442;
+    background-color: #f9cce1;
+}
+
+#arseopro-config .nav-tabs .has-error.active a{
+    color: #555;
+    background-color: #FFFFFF;
+}
+
+#arseopro-config .modal-hg{
+    width: 1200px;
+}
+#arseo-meta-rule-form .keywords-select-row{
+    display: none;
+}
+#arseo-meta-rule-form .keywords-select-row.active{
+    display: block;
+}
+
+#arseopro-config #arseopro-config-tabs h3.section-head{
+    text-transform: none;
+    border: 0 none;
+    margin: 0;
+    font-size: 22px;
+    line-height: 28px;
+    height: 28px;
+    padding: 0;
+}
+#arseopro_fb_upload_image_list,
+#arseopro_tw_upload_image_list{
+    margin-top: 3px;
+}
+#arseo-help-content{
+    font-size: 15px;
+}
+#arseopro-help #arseo-help-content h3{
+    padding: 0;
+    margin: 15px 0 5px 0;
+    text-transform: none;
+    border: 0 none;
+    font-size: 20px;
+    line-height: 24px;
+    height: auto;
+}
+#arseopro-help #arseo-help-content h4{
+    font-size: 18px;
+    margin-top: 0;
+}
+.arseo-file-content{
+    list-style: none outside none;
+    padding: 5px 15px;
+    background: #FFFFFF;
+    margin: 3px 0 0 0 !important;
+    color: #787878;
+    font-size: 14px;
+}
+.arseo-file-content .arseo-line-nubmer{
+    color: #999999;
+    margin-right: 5px;
+}
+#arseopro-config .panel-group .panel .panel-heading{
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+#arseopro-config #arseo-help-content .panel-group .panel{
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 3px;
+}
+#arseopro-config #arseo-help-content .panel-group .panel .panel-body{
+    padding: 10px;
+}
+#arseopro-config .panel-group .panel h4{
+    text-transform: none;
+}
+#arseopro-config #arseo-help-content .panel{
+    padding: 10px;
+}
+#arseopro-config #arseo-help-content .panel .panel-title > a{
+    display: block;
+    text-decoration: none;
+    padding: 10px 10px;
+}
+#arseopro-config #arseo-help-content .panel .panel-title > a:focus,
+#arseopro-config #arseo-help-content .panel .panel-title > a:active{
+    outline: none;
+}
