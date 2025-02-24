@@ -26,6 +26,7 @@ class ArSeoProURLSupplier extends ArSeoProURLAbstract
     
     public $enable;
     public $keep_id;
+    public $disable_html;
     public $redirect;
     public $redirect_code;
     public $disable_old;
@@ -159,9 +160,9 @@ class ArSeoProURLSupplier extends ArSeoProURLAbstract
     public function getDefaultRoute()
     {
         if ($this->keep_id) {
-            return 'supplier/{id}-{rewrite}.html';
+            return 'supplier/{id}-{rewrite}' . ($this->disable_html ? '' : '.html');
         }
-        return 'supplier/{rewrite}.html';
+        return 'supplier/{rewrite}' . ($this->disable_html ? '' : '.html');
     }
     
     public function getRoute()
@@ -197,7 +198,8 @@ class ArSeoProURLSupplier extends ArSeoProURLAbstract
                     'redirect_code',
                     'schema',
                     'keywords',
-                    'disable_old'
+                    'disable_old',
+                    'disable_html'
                 ), 'safe'
             )
         );

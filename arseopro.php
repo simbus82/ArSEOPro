@@ -39,6 +39,8 @@ include_once dirname(__FILE__).'/classes/redirects/models/ArSeoProRedirectTable.
 include_once dirname(__FILE__).'/classes/meta/models/ArSeoProMetaTable.php';
 include_once dirname(__FILE__).'/classes/meta/models/ArSeoProMetaData.php';
 
+include_once dirname(__FILE__).'/classes/ArSeoFOCheck.php';
+
 /**
  * @property ArSeoProUrls $urlConfig
  * @property ArSeoProSitemap $sitemapConfig
@@ -75,7 +77,7 @@ class ArSeoPro extends Module
     {
         $this->name = 'arseopro';
         $this->tab = 'seo';
-        $this->version = '1.9.2';
+        $this->version = '1.9.5';
         $this->author = 'Areama';
         $this->controllers = array('ajax');
         $this->need_instance = 0;
@@ -105,13 +107,7 @@ class ArSeoPro extends Module
         } else {
             $versions['Dispatcher'] = 'unknown';
         }
-        
-        $fo = new FrontController();
-        if (method_exists($fo, 'arSeoProOverrideVersion')) {
-            $versions['FrontController'] = $fo->arSeoProOverrideVersion();
-        } else {
-            $versions['FrontController'] = 'unknown';
-        }
+        $versions['FrontController'] = $this->version;
         
         $link = Context::getContext()->link;
         if (method_exists($link, 'arSeoProOverrideVersion')) {
@@ -848,7 +844,7 @@ class ArSeoPro extends Module
             $shopId = Context::getContext()->shop->id;
             $lang = Context::getContext()->language->iso_code;
             $sql = 'SELECT * FROM '._DB_PREFIX_.'arseopro_redirect '.
-                'WHERE `from` = "'.pSQL($uri).'" OR `from` = "' . pSQL($url) .  '" ' .
+                'WHERE (`from` = "'.pSQL($uri).'" OR `from` = "' . pSQL($url) .  '") ' .
                 'AND id_shop IN(0, '.(int)$shopId.') '.
                 'AND status = 1 ' .
                 'ORDER BY id_redirect DESC';
@@ -856,7 +852,7 @@ class ArSeoPro extends Module
                 $uri = preg_replace("{^/{$lang}/}is", '/{lang}/', $uri);
                 $url = $this->getShopDomain() . $uri;
                 $sql = 'SELECT * FROM '._DB_PREFIX_.'arseopro_redirect '.
-                    'WHERE `from` = "'.pSQL($uri).'" OR `from` = "' . pSQL($url) .  '" '.
+                    'WHERE (`from` = "'.pSQL($uri).'" OR `from` = "' . pSQL($url) .  '") '.
                     'AND id_shop IN(0, '.(int)$shopId.') '.
                     'AND status = 1 ' .
                     'ORDER BY id_redirect DESC';
@@ -1031,6 +1027,8 @@ class ArSeoPro extends Module
             'features' => 'Product features',
             'default_cat_name' => 'Product category name',
             'category_list' => 'All product categories',
+            'mpn' => 'Product MPN',
+            'ean13' => 'Prosuct EAN13',
             'price' => 'Product retail price',
             'reduce_price' => 'Product specific price',
             'price_wt' => 'Product pre-tax retail price',

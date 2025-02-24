@@ -88,11 +88,12 @@ class ArSeoProURLCMSCategory extends ArSeoProURLAbstract
     
     public function getQuery($rewrite, $id_lang = null, $id_parent = false)
     {
+        $encodedRewrite = urlencode($rewrite);
         $sql = new DbQuery();
         $sql->from('cms_category_lang', 't');
         $sql->join("LEFT JOIN `" . _DB_PREFIX_ . "cms_category` cc ON t.`id_cms_category` = cc.`id_cms_category`");
         $where = array(
-            "t.`link_rewrite` = '" . pSQL($rewrite) . "'"
+            "(t.`link_rewrite` = '" . pSQL($rewrite) . "' OR t.`link_rewrite` = '" . pSQL($encodedRewrite) . "')"
         );
         if ($id_lang) {
             $where[] = "t.`id_lang` = " . (int)$id_lang;

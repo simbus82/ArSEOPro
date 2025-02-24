@@ -330,6 +330,22 @@ class ArSeoProMetaData
         }
         return $currency;
     }
+
+    public function getMpnTag()
+    {
+        if (!$this->isProduct()) {
+            return null;
+        }
+        return $this->object->mpn;
+    }
+
+    public function getEan13Tag()
+    {
+        if (!$this->isProduct()) {
+            return null;
+        }
+        return $this->object->ean13;
+    }
     
     public function getReducePriceTag()
     {

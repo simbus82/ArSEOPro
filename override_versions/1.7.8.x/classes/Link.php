@@ -27,7 +27,7 @@ class Link extends LinkCore
     
     public function arSeoProOverrideVersion()
     {
-        return '1.9.2';
+        return '1.9.5';
     }
     
     protected function getLangLink($id_lang = null, Context $context = null, $id_shop = null)

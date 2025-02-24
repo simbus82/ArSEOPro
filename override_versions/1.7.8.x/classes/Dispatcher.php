@@ -24,7 +24,7 @@ class Dispatcher extends DispatcherCore
     
     public function arSeoProOverrideVersion()
     {
-        return '1.9.2';
+        return '1.9.5';
     }
     
     public function getModuleInstance()

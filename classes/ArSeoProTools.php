@@ -54,19 +54,19 @@ class ArSeoProTools
         if (function_exists('json_encode')) {
             return json_encode($data);
         }
-        if (method_exists(Tools, 'jsonEncode')) {
+        if (method_exists('Tools', 'jsonEncode')) {
             return Tools::jsonEncode($data);
         }
         throw new Exception('No JSON encode method found');
     }
     
-    public static function jsonDecode($json)
+    public static function jsonDecode($json, $assoc = false)
     {
         if (function_exists('json_decode')) {
-            return json_decode($json);
+            return json_decode($json, $assoc);
         }
-        if (method_exists(Tools, 'jsonDecode')) {
-            return Tools::jsonDecode($json);
+        if (method_exists('Tools', 'jsonDecode')) {
+            return Tools::jsonDecode($json, $assoc);
         }
         throw new Exception('No JSON decode method found');
     }

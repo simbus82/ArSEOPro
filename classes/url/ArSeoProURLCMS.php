@@ -26,6 +26,7 @@ class ArSeoProURLCMS extends ArSeoProURLAbstract
     
     public $enable;
     public $keep_id;
+    public $disable_html;
     public $parent_cat;
     public $redirect;
     public $redirect_code;
@@ -101,7 +102,8 @@ class ArSeoProURLCMS extends ArSeoProURLAbstract
         if ($id_shop) {
             $sql->join('LEFT JOIN `'._DB_PREFIX_.'cms_shop` cs ON c.`id_cms` = cs.`id_cms`');
         }
-        $where = array("t.`link_rewrite` = '" . pSQL($rewrite) . "'");
+        $encodedRewrite = urlencode($rewrite);
+        $where = array("(t.`link_rewrite` = '" . pSQL($rewrite) . "' OR t.`link_rewrite` = '" . pSQL($encodedRewrite) . "')");
         if ($id_lang) {
             $where[] = "t.`id_lang` = " . (int)$id_lang;
         }
@@ -232,14 +234,14 @@ class ArSeoProURLCMS extends ArSeoProURLAbstract
     {
         if (!$this->parent_cat) {
             if ($this->keep_id) {
-                return 'content/{id}-{rewrite}.html';
+                return 'content/{id}-{rewrite}' . ($this->disable_html ? '' : '.html');;
             }
-            return 'content/{rewrite}.html';
+            return 'content/{rewrite}' . ($this->disable_html ? '' : '.html');
         }
         if ($this->keep_id) {
-            return 'content/{categories:/}{id}-{rewrite}.html';
+            return 'content/{categories:/}{id}-{rewrite}' . ($this->disable_html ? '' : '.html');
         }
-        return 'content/{categories:/}{rewrite}.html';
+        return 'content/{categories:/}{rewrite}' . ($this->disable_html ? '' : '.html');
     }
     
     public function getRoute()
@@ -282,7 +284,8 @@ class ArSeoProURLCMS extends ArSeoProURLAbstract
                     'redirect_code',
                     'schema',
                     'keywords',
-                    'disable_old'
+                    'disable_old',
+                    'disable_html'
                 ), 'safe'
             )
         );

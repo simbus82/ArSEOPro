@@ -80,7 +80,7 @@ class ArSeoProAjaxModuleFrontController extends ModuleFrontController
         if (!$continue) {
             $lastgen = time();
             $generator->generateIndexSitemap();
-            Configuration::updateValue('ARSEO_SITEMAP_GEN', $time, false, null, $id_shop);
+            Configuration::updateValue('ARSEO_SITEMAP_GEN', $lastgen, false, null, $id_shop);
             $config = new ArSeoProSitemapGeneral($this->module);
             $config->loadFromConfig();
             $ping = array();

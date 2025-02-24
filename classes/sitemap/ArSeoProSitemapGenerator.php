@@ -695,7 +695,7 @@ class ArSeoProSitemapGenerator
                 . 'AND sp.id_shop=' . (int)$this->id_shop . ' AND sp.export = 1';
         }
         if ($this->config->products->active_only) {
-            $sql .= ' AND p.active = 1';
+            $sql .= ' AND p.active = 1 AND ps.active = 1';
         }
         $sql .= ' ORDER BY p.id_product';
         $sql .= ' LIMIT ' . (int)$offset . ', ' . (int)$this->config->general->limit;

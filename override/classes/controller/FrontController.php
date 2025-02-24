@@ -24,7 +24,7 @@ class FrontController extends FrontControllerCore
 
     public function arSeoProOverrideVersion()
     {
-        return '1.9.2';
+        return '1.9.5';
     }
     
     /**

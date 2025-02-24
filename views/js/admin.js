@@ -467,6 +467,9 @@ var arSEO = {
                     if (data.totalCount){
                         arSEO.sitemap.totalCount += data.realCount.total;
                         var percent = (arSEO.sitemap.totalCount/ data.totalCount * 100);
+                        if (data.continue === 0) {
+                            percent = 100;
+                        }
                         $('#arseo-sitemap-progress>div').css({
                             width: parseInt(percent) + '%'
                         });

@@ -28,6 +28,7 @@ class ArSeoProURLProduct extends ArSeoProURLAbstract
     public $keep_id;
     public $default_cat;
     public $parent_cat;
+    public $disable_html;
     public $redirect;
     public $redirect_code;
     public $redirect_not_active;
@@ -100,10 +101,11 @@ class ArSeoProURLProduct extends ArSeoProURLAbstract
     
     public function getQuery($rewrite, $id_lang = null, $id_shop = null, $id_parent = false, $activeOnly = false)
     {
+        $encodedRewrite = urlencode($rewrite);
         $sql = new DbQuery();
         $sql->from('product_lang', 't');
         $sql->join("LEFT JOIN `" . _DB_PREFIX_ . "product_shop` ps ON t.`id_product` = ps.`id_product` AND t.`id_shop` = ps.`id_shop`");
-        $where = array("t.`link_rewrite` = '" . pSQL($rewrite) . "'");
+        $where = array("(t.`link_rewrite` = '" . pSQL($rewrite) . "' OR t.`link_rewrite` = '" . pSQL($encodedRewrite) . "')");
         if ($id_lang) {
             $where[] = "t.`id_lang` = " . (int)$id_lang;
         }
@@ -320,7 +322,7 @@ class ArSeoProURLProduct extends ArSeoProURLAbstract
         if ($this->enable_attr) {
             $route[] = '{::id_product_attribute}';
         }
-        return implode('', $route) . '.html';
+        return implode('', $route) . ($this->disable_html ? '' : '.html');
     }
     
     public function keywords()
@@ -406,6 +408,7 @@ class ArSeoProURLProduct extends ArSeoProURLAbstract
             'schema',
             'keywords',
             'disable_old',
+            'disable_html',
             'remove_anchor_id'
         );
         if ($this->module->is17() || $this->module->is8x()) {

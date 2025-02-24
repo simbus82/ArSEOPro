@@ -147,7 +147,8 @@ abstract class ArSeoProURLAbstract extends ArSeoModel
             'redirect_code' => 'select',
             'keywords' => 'html',
             'schema' => 'html',
-            'disable_old' => 'switch'
+            'disable_old' => 'switch',
+            'disable_html' => 'switch'
         );
     }
     
@@ -167,6 +168,7 @@ abstract class ArSeoProURLAbstract extends ArSeoModel
         return array(
             'enable' => $this->l('Enable', 'ArSeoProURLAbstract'),
             'disable_old' => $this->l('Disable old routes', 'ArSeoProURLAbstract'),
+            'disable_html' => $this->l('Disable .html suffix', 'ArSeoProURLAbstract'),
             'redirect_code' => $this->l('Redirect code', 'ArSeoProURLAbstract'),
             'keywords' => ''
         );

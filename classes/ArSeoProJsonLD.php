@@ -114,9 +114,8 @@ class ArSeoProJsonLD
         $qty = Product::getQuantity($product->id, $ipa);
         $url = $link->getProductLink($product, null, null, null, null, null, $ipa);
         
-        
+        $images = array();
         if (($this->product->images == 'all' && $ipa) || ($this->product->images == 'combination' && !$ipa)) {
-            $images = array();
             $imgs = $product->getImages($id_lang);
             foreach ($imgs as $img) {
                 $images[] = $link->getImageLink($product->link_rewrite, $img['id_image'], $this->product->image_size);
@@ -134,7 +133,9 @@ class ArSeoProJsonLD
             }
         } else {
             $image = $ipa == $product->cache_default_attribute? Product::getCover($product->id) : Product::getCombinationImageById($ipa, $id_lang);
-            $images = $link->getImageLink($product->link_rewrite, $image['id_image'], $this->product->image_size);
+            if ($image) {
+                $images = $link->getImageLink($product->link_rewrite, $image['id_image'], $this->product->image_size);
+            }
         }
         
         $defaultCategory = new Category($product->id_category_default, $id_lang);

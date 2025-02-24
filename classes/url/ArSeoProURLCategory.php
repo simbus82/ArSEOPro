@@ -26,6 +26,7 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
     
     public $enable;
     public $keep_id;
+    public $disable_ending_slash;
     public $enable_layered;
     public $parent_cat;
     public $redirect;
@@ -102,12 +103,12 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
         if (isset($m['ars_rewrite_category'])) {
             $rewrite = $m['ars_rewrite_category'];
         }
-        
+        $encodedRewrite = urlencode($rewrite);
         $sql = 'SELECT cl.`id_category`, c.is_root_category FROM `'._DB_PREFIX_.'category_lang` cl '
                 . 'LEFT JOIN `'._DB_PREFIX_.'category` c ON cl.id_category = c.id_category '
                 . 'LEFT JOIN `' . _DB_PREFIX_ . 'category_shop` cs ON cs.id_category = c.id_category '
                 . 'WHERE cl.`id_shop` = '.(int)($id_shop) . ' AND cs.id_shop = ' . (int)$id_shop . ' '
-                . 'AND cl.`link_rewrite` = "'.pSQL($rewrite).'"';
+                . 'AND (cl.`link_rewrite` = "'.pSQL($rewrite).'" OR cl.`link_rewrite` = "' . pSQL($encodedRewrite) . '")';
         
         $result = Db::getInstance()->getRow($sql.' AND cl.`id_lang` = ' . (int)$id_lang);
         $id_category = null;
@@ -412,7 +413,7 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
         }
         $route[] = '{rewrite}';
         
-        return implode('', $route) . '/';
+        return implode('', $route) . ($this->disable_ending_slash ? '' : '/');
     }
     
     public function getRoute()
@@ -477,6 +478,7 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
                     'enable',
                     'keep_id',
                     'enable_layered',
+                    'disable_ending_slash',
                     'parent_cat',
                     'redirect',
                     'redirect_code',
@@ -523,6 +525,7 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
             'enable' => $this->l('Enable this tab functionality', 'ArSeoProURLCategory'),
             'keep_id' => $this->l('Keep category ID in the URL', 'ArSeoProURLCategory'),
             'enable_layered' => $this->l('Handle faceted search URLs', 'ArSeoProURLCategory'),
+            'disable_ending_slash' => $this->l('Disable ending slash', 'ArSeoProURLCategory'),
             'parent_cat' => $this->l('Include parent category to URL', 'ArSeoProURLCategory'),
             'redirect' => $this->l('Redirect type if category not found', 'ArSeoProURLCategory'),
             'schema' => $this->l('Current Category URL scheme', 'ArSeoProURLCategory'),
@@ -536,6 +539,7 @@ class ArSeoProURLCategory extends ArSeoProURLAbstract
             'enable_layered' => 'switch',
             'parent_cat' => 'switch',
             'redirect' => 'select',
+            'disable_ending_slash' => 'switch'
         ));
     }
     
